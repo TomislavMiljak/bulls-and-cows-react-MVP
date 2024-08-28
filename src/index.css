@@ -71,7 +71,7 @@ button:focus-visible {
 }
 
 .instructions {
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.85);
   /*  background: url("./assets/bcg123.png");
   background-size: cover;
   opacity: 1;
@@ -87,7 +87,7 @@ button:focus-visible {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.85);
   padding: 2rem;
   text-align: center;
   opacity: 1;
