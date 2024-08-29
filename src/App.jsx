@@ -497,7 +497,7 @@ function BullsAndCowsGame() {
     const summaryNumberOfRounds = `You have played a total of ${numberOfRounds + 1} round(s) in this session.\n`;
     const summarySecretNumber = `The secret number for the current round: ${secretNumber}\n`;
     const summarySessionTimeTaken = `The current round of the game lasted: ${sessionTimeTaken.toFixed(2)} second(s)\n`;
-    const summaryNumberOfAttempts = `Number of attempts taken in the current round: ${numberOfAttempts}\n`;
+    const summaryNumberOfAttempts = `Number of attempts taken in the current round: ${numberOfAttempts + 1}\n`;
 
     setMessages((prevMessages) => [...prevMessages, summaryMessage, summaryNumberOfRounds, summarySecretNumber, summarySessionTimeTaken, summaryNumberOfAttempts]);
   }
