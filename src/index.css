@@ -78,7 +78,10 @@ button:focus-visible {
   align-items: center;
   gap: 1px;
   flex-wrap: wrap;
+  
 }
+
+
 
 .instructions {
   background-color: rgba(255, 255, 255, 0.85);

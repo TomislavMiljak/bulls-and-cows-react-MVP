@@ -419,9 +419,10 @@ function BullsAndCowsGame() {
         secNumArr.push(randomDigit);
       }
     }
+    const newGameStart = `\n\n\n\n\nA new game has started!\n\n\n\n\n`
     setSecretNumber(secNumArr.join(''));
     setSessionStartTime(new Date());
-    setMessages((prevMessages) => [...prevMessages, "A new game has started!"]);
+    setMessages((prevMessages) => [newGameStart, ...prevMessages]);
     setAttempts(10);
     setNumberOfAttempts(0);
     setIncorrectInputs(0);
@@ -587,8 +588,12 @@ function BullsAndCowsGame() {
 
         <div className='game-messages'>
           <h2>Game Messages:</h2>
+          
           {messages.map((message, index) => (
             <li key={index}>{message}</li>
+              
+           
+            
           ))}
         </div>
       </div>
