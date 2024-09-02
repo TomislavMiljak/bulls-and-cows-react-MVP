@@ -445,7 +445,8 @@ function BullsAndCowsGame() {
       isNaN(guess) || 
       guess.includes('0')
     ) {
-      setMessages((prevMessages) => [...prevMessages, `Sorry ${playerName}, this was INCORRECT INPUT! Your guess: ${guess}`]);
+      const incorrectInputAlert = alert(`Sorry ${playerName}, this was INCORRECT INPUT! Your guess attempt must consist of EXACTLY FOUR UNIQUE digits. Choose your digits among and including 1, 2, 3, 4, 5, 6, 7, 8, or 9. Your guess: ${guess}`);
+      setMessages((prevMessages) => [...prevMessages, incorrectInputAlert]);
       setIncorrectInputs(incorrectInputs + 1);
       const timeTakenIncorrectInput = (new Date() - currentStartTime) / 1000;
       setTimePerIncorrectAttemptTaken((prevTimes) => [...prevTimes, timeTakenIncorrectInput.toFixed(2)]);
@@ -475,8 +476,9 @@ function BullsAndCowsGame() {
         setIsGameOver(true);
         showSummary();
       } else {
+        const wrongValidAttempt = `Wrong! Your guess: ${guess}. You have ${bullsCount} bulls and ${cowsCount} cows. ${attempts - 1} attempts left.`
         setAttempts(attempts - 1);
-        setMessages((prevMessages) => [...prevMessages, `Wrong! Your guess: ${guess}. You have ${bullsCount} bulls and ${cowsCount} cows. ${attempts - 1} attempts left.`]);
+        setMessages((prevMessages) => [wrongValidAttempt, ...prevMessages]);
         setNumberOfAttempts(numberOfAttempts + 1);
 
         if (attempts - 1 === 0) {
@@ -485,6 +487,8 @@ function BullsAndCowsGame() {
         }
       }
     }
+    // Clear the input field after each guess
+    setGuess('');
   }
 
   function showSummary() {
@@ -499,7 +503,7 @@ function BullsAndCowsGame() {
     const summarySessionTimeTaken = `The current round of the game lasted: ${sessionTimeTaken.toFixed(2)} second(s)\n`;
     const summaryNumberOfAttempts = `Number of attempts taken in the current round: ${numberOfAttempts + 1}\n`;
 
-    setMessages((prevMessages) => [...prevMessages, summaryMessage, summaryNumberOfRounds, summarySecretNumber, summarySessionTimeTaken, summaryNumberOfAttempts]);
+    setMessages((prevMessages) => [summaryMessage, summaryNumberOfRounds, summarySecretNumber, summarySessionTimeTaken, summaryNumberOfAttempts, ...prevMessages]);
   }
 
   function handleNewRound() {
@@ -510,6 +514,8 @@ function BullsAndCowsGame() {
     const endGameMessage = `\nDear ${playerName}, THE BULLS AND COWS GAME is over for this session.`;
     setMessages((prevMessages) => [...prevMessages, endGameMessage]);
   }
+
+  
 
   return (
     <div className="container">
@@ -553,6 +559,8 @@ function BullsAndCowsGame() {
             checked={trackAttempts} 
             onChange={(e) => setTrackAttempts(e.target.checked)} 
             disabled={isGameOver}
+           
+            
           />
         </div>
         
@@ -563,6 +571,8 @@ function BullsAndCowsGame() {
             value={guess} 
             onChange={(e) => setGuess(e.target.value)} 
             disabled={isGameOver}
+            
+            
           />
           <button style={{backgroundColor: "lightgreen"}} onClick={handleGuess} disabled={isGameOver}>Submit Guess</button>
         </div>
