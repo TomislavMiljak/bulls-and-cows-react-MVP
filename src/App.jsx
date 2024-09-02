@@ -449,11 +449,12 @@ function BullsAndCowsGame() {
       isNaN(guess) || 
       guess.includes('0')
     ) {
-      const incorrectInputAlert = alert(`Sorry ${playerName}, this was INCORRECT INPUT! Your guess attempt must consist of EXACTLY FOUR UNIQUE digits. Choose your digits among and including 1, 2, 3, 4, 5, 6, 7, 8, or 9. Your guess: ${guess}`);
-      setMessages((prevMessages) => [...prevMessages, incorrectInputAlert]);
+      alert(`Sorry ${playerName}, this was INCORRECT INPUT! Your guess attempt must consist of EXACTLY FOUR UNIQUE digits. Choose your digits among and including 1, 2, 3, 4, 5, 6, 7, 8, or 9. Your guess: ${guess}`);
+      setMessages((prevMessages) => [`Incorrect input by ${playerName}: ${guess}`, ...prevMessages ]);
       setIncorrectInputs(incorrectInputs + 1);
       const timeTakenIncorrectInput = (new Date() - currentStartTime) / 1000;
       setTimePerIncorrectAttemptTaken((prevTimes) => [...prevTimes, timeTakenIncorrectInput.toFixed(2)]);
+      
     } else {
       let bullsCount = 0;
       let cowsCount = 0;
