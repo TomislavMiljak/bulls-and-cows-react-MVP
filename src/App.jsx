@@ -447,7 +447,10 @@ function BullsAndCowsGame() {
       checkRepeated.length !== 4 || 
       guess.length !== 4 || 
       isNaN(guess) || 
-      guess.includes('0')
+      guess.includes('0') ||
+      guess.includes(`e`) ||
+      guess.includes(`.`) ||
+      guess.includes(`-`)
     ) {
       alert(`Sorry ${playerName}, this was INCORRECT INPUT! Your guess attempt must consist of EXACTLY FOUR UNIQUE digits. Choose your digits among and including 1, 2, 3, 4, 5, 6, 7, 8, or 9. Your guess: ${guess}`);
       setMessages((prevMessages) => [`Incorrect input by ${playerName}: ${guess}`, ...prevMessages ]);
@@ -504,7 +507,7 @@ function BullsAndCowsGame() {
    /*  const summaryMessage = `
       \n\n\n\n\nSummary for the current round:\n`; */
     const summaryMessage = {
-        text: `\n\n\n\n\nSummary for the current round:\n`,
+        text: `\n\n\n\n\nSummary for the ${numberOfRounds + 1}. round:\n`,
         style: { textDecoration: "underline", fontWeight: "bold",fontStyle: "italic", paddingBottom: "0.5rem" }
       };
     /* const summaryNumberOfRounds = `You have played a total of ${numberOfRounds + 1} round(s) in this session.\n`; */
@@ -539,7 +542,7 @@ function BullsAndCowsGame() {
 
   function handleEndGame() {
     const endGameMessage = `\nDear ${playerName}, THE BULLS AND COWS GAME is over for this session.`;
-    setMessages((prevMessages) => [...prevMessages, endGameMessage]);
+    setMessages((prevMessages) => [endGameMessage, ...prevMessages ]);
   }
 
   
