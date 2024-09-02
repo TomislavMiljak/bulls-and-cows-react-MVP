@@ -419,7 +419,10 @@ function BullsAndCowsGame() {
         secNumArr.push(randomDigit);
       }
     }
-    const newGameStart = `\n\n\n\n\nA new game has started!\n\n\n\n\n`
+    const newGameStart = {
+      text: "A new game has started!",
+      style: { textDecoration: "underline", paddingBottom: "3rem" }
+    };
     setSecretNumber(secNumArr.join(''));
     setSessionStartTime(new Date());
     setMessages((prevMessages) => [newGameStart, ...prevMessages]);
@@ -497,12 +500,34 @@ function BullsAndCowsGame() {
     const sessionTimeTaken = (sessionEndTime - sessionStartTime) / 1000;
     setNumberOfRounds((prevRounds) => prevRounds + 1);
 
-    const summaryMessage = `
-      \n\n\n\n\nSummary for the current round:\n`;
-    const summaryNumberOfRounds = `You have played a total of ${numberOfRounds + 1} round(s) in this session.\n`;
-    const summarySecretNumber = `The secret number for the current round: ${secretNumber}\n`;
-    const summarySessionTimeTaken = `The current round of the game lasted: ${sessionTimeTaken.toFixed(2)} second(s)\n`;
-    const summaryNumberOfAttempts = `Number of attempts taken in the current round: ${numberOfAttempts + 1}\n`;
+   /*  const summaryMessage = `
+      \n\n\n\n\nSummary for the current round:\n`; */
+    const summaryMessage = {
+        text: `\n\n\n\n\nSummary for the current round:\n`,
+        style: { textDecoration: "underline", fontWeight: "bold",fontStyle: "italic", paddingBottom: "0.5rem" }
+      };
+    /* const summaryNumberOfRounds = `You have played a total of ${numberOfRounds + 1} round(s) in this session.\n`; */
+    const summaryNumberOfRounds = {
+      text: `You have played a total of ${numberOfRounds + 1} round(s) in this session.\n`,
+      style: { textDecoration: "underline", fontStyle: "italic", paddingBottom: "0.5rem" }
+    };
+    /* const summarySecretNumber = `The secret number for the current round: ${secretNumber}\n`; */
+    const summarySecretNumber = {
+      text: `The secret number for the current round: ${secretNumber}\n`,
+      style: { textDecoration: "underline", fontStyle: "italic", paddingBottom: "0.5rem" }
+    };
+    const summarySessionTimeTaken = {
+      text: `The current round of the game lasted: ${sessionTimeTaken.toFixed(2)} second(s)\n`,
+      style: { textDecoration: "underline", fontStyle: "italic", paddingBottom: "0.5rem" }
+    };
+    /* const summarySessionTimeTaken = `The current round of the game lasted: ${sessionTimeTaken.toFixed(2)} second(s)\n`; */
+    
+    /* const summaryNumberOfAttempts = `Number of attempts taken in the current round: ${numberOfAttempts + 1}\n`; */
+    const summaryNumberOfAttempts = {
+      text: `Number of attempts taken in the current round: ${numberOfAttempts + 1}\n`,
+      style: { textDecoration: "underline", fontStyle: "italic", paddingBottom: "0.5rem" }
+    };
+    
 
     setMessages((prevMessages) => [summaryMessage, summaryNumberOfRounds, summarySecretNumber, summarySessionTimeTaken, summaryNumberOfAttempts, ...prevMessages]);
   }
@@ -588,13 +613,16 @@ function BullsAndCowsGame() {
 
         <div className='game-messages'>
           <h2>Game Messages:</h2>
-          
           {messages.map((message, index) => (
-            <li key={index}>{message}</li>
-              
-           
             
+            <li 
+               key={index} 
+               style={message.style ? message.style :{}}>
+                {message.text ? message.text : message}</li>
           ))}
+          
+         
+          
         </div>
       </div>
     </div>
